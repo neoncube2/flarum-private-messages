@@ -18,7 +18,8 @@ class ConversationSerializer extends AbstractSerializer
         }
 
         return [
-            'status' => json_decode($conversation->status),
+            //fix : json_decode() passed null problem
+            'status' => $conversation->status ? json_decode($conversation->status) : [],
             'createdAt' => $this->formatDate($conversation->created_at),
             'updatedAt' => $this->formatDate($conversation->created_at),
             'totalMessages' => $conversation->total_messages,
